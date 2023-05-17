@@ -1,6 +1,6 @@
-import {  useState } from "react";
+import { useState } from "react";
 
-const Form = ({getData}) => {
+const Form = ({ getData }) => {
   const [coord, setCoord] = useState("");
 
   const handleSubmit = (e) => {
@@ -8,23 +8,18 @@ const Form = ({getData}) => {
     const coordinates = coord;
     const split = coordinates.split(",");
     const latitud = split[0];
-    const longitud = split[1].trim();
-
-    const url =
-      "https://sunset-easy-spleen.glitch.me/api/conversor/" +
-      latitud +
-      "," +
-      longitud;
-   
-    console.log(url)
+    const longitud = split[1];
+    const endpointApi = "https://sunset-easy-spleen.glitch.me/api/conversor/";
+    const url = endpointApi + latitud + "," + longitud;
 
     fetch(url)
       .then((response) => response.json())
-      .then((data) =>{
-        console.log('data: ',data)
-        getData(data)
+      .then((data) => {
+        console.log("data: ", data);
+        getData(data);
       })
-      .catch((error) => console.log(JSON.stringify(error)))
+      .catch((error) => console.log(JSON.stringify(error)));
+    e.target.reset()
   };
 
   return (
