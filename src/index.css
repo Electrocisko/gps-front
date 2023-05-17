@@ -1,0 +1,8 @@
+body {
+    background-color: rgb(50, 42, 42);
+    background-image: url('./assets/pexels-marta-wave-5875844-mini.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
