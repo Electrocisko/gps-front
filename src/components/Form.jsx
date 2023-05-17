@@ -5,12 +5,8 @@ const Form = ({ getData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const coordinates = coord;
-    const split = coordinates.split(",");
-    const latitud = split[0];
-    const longitud = split[1];
     const endpointApi = "https://sunset-easy-spleen.glitch.me/api/conversor/";
-    const url = endpointApi + latitud + "," + longitud;
+    const url = endpointApi + coord;
 
     fetch(url)
       .then((response) => response.json())
