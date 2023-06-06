@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-const Form = ({ getData }) => {
+const Form = ({ getData, setSpinner }) => {
   const [coord, setCoord] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const endpointApi = "https://sunset-easy-spleen.glitch.me/api/conversor/";
+    const endpointApi = "https://decimaldegrees-gps-conversor-production.up.railway.app/api/conversor/";
     const url = endpointApi + coord;
-
+    setSpinner(true);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log("data: ", data);
         getData(data);
+        setSpinner(false);
       })
       .catch((error) => console.log(JSON.stringify(error)));
-    e.target.reset()
+    e.target.reset();
   };
 
   return (
@@ -24,7 +24,7 @@ const Form = ({ getData }) => {
         <input
           className="form-control "
           type="text"
-          placeholder="Pegue las coordenadas"
+          placeholder="Pegue las coordenadas aqui"
           name="coordinates"
           onChange={(e) => setCoord(e.target.value)}
         ></input>
